@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBatteryBolt,
-  faBatteryEmpty,
-  faBatteryQuarter,
-  faBatteryHalf,
-  faBatteryThreeQuarters,
-  faBatteryFull,
-} from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faBatteryBolt,
+//   faBatteryEmpty,
+//   faBatteryQuarter,
+//   faBatteryHalf,
+//   faBatteryThreeQuarters,
+//   faBatteryFull,
+// } from "@fortawesome/free-solid-svg-icons";
 
 export default function BatteryStatus() {
   const [batteryLevel, setBatteryLevel] = useState(0);
