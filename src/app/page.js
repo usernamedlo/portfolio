@@ -2,40 +2,59 @@
 import React, { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 
-import NavBar from "./components/NavBar";
-
-const Icon = ({ image, name, style, size, mainRef }) => {
-  const [top, setTop] = useState(0);
-  const [left, setLeft] = useState(0);
-
-  const sizeNumber = Number(size.replace("w-", "")) * 16;
-
-  useEffect(() => {
-    if (mainRef.current) {
-      const top = Math.random() * (mainRef.current.offsetHeight - sizeNumber);
-      const left = Math.random() * (mainRef.current.offsetWidth - sizeNumber);
-      setTop(top);
-      setLeft(left);
-    }
-  }, [mainRef, sizeNumber]);
+const Icon = ({
+  image,
+  name,
+  style,
+  mainRef,
+  link,
+  initialTop,
+  initialLeft,
+  onSelect
+}) => {
+  const [top, setTop] = useState(initialTop);
+  const [left, setLeft] = useState(initialLeft);
+  const [mouseDownTime, setMouseDownTime] = useState(null);
 
   const handleMouseDown = (e) => {
     e.preventDefault();
+    setMouseDownTime(new Date().getTime());
+  };
+
+  const handleMouseUp = (e) => {
+    e.preventDefault();
+    const mouseUpTime = new Date().getTime();
+    const elapsedTime = mouseUpTime - mouseDownTime;
+    if (elapsedTime <= 200) {
+      if (link) {
+        window.open(link, "_blank");
+      } else if (!link && onSelect) {
+        onSelect(image);
+      }
+    }
+    setMouseDownTime(null);
   };
 
   return (
     <Draggable bounds="parent" axis="both">
       <div
-        className="icon cursor-move absolute flex flex-col items-center select-none bg-blue-800"
+        className="icon cursor-move absolute flex flex-col items-center select-none border-blue-600 border"
         style={{ top: `${top}px`, left: `${left}px` }}
       >
         <img
           src={image}
           alt={name}
-          className={`${style} ${size}`}
+          className={`${style}`}
           onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
         />
-        <p>{name}</p>
+        <p
+          className="mt-4"
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+        >
+          {name}
+        </p>
       </div>
     </Draggable>
   );
@@ -43,64 +62,74 @@ const Icon = ({ image, name, style, size, mainRef }) => {
 
 export default function Home() {
   const mainRef = useRef();
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const imageList = ["luffy.gif", "yt.png"];
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
+  const handleImageSelect = (image) => {
+    const index = imageList.indexOf(image);
+    setSelectedImageIndex(index);
+  };
+
+  const handleModalClose = () => {
+    setSelectedImageIndex(null);
+  };
+
+  const handleKeyDown = (e) => {
+    if (selectedImageIndex !== null) {
+      if (e.key === "ArrowRight") {
+        setSelectedImageIndex((selectedImageIndex + 1) % imageList.length);
+      } else if (e.key === "ArrowLeft") {
+        setSelectedImageIndex(
+          (selectedImageIndex - 1 + imageList.length) % imageList.length
+        );
+      }
+    }
+  };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          setIsLoading(false);
-          clearInterval(timer);
-          return 100;
-        }
-        const newProgress = oldProgress + 20;
-        return newProgress > 100 ? 100 : newProgress;
-      });
-    }, 200);
-    return () => clearInterval(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center flex-col">
-        <img src="../../apple_logo.png" alt="Apple Logo" className="h-40" />
-        <div className="w-3/4 bg-gray-500 mt-6 rounded">
-          <div
-            style={{ width: `${progress}%` }}
-            className="h-2 bg-white transition-all duration-200 rounded"
-          />
-        </div>
-      </div>
-    );
-  }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImageIndex]);
 
   return (
     <div className="flex flex-col h-screen">
-      <header className="h-1/20">
-        <NavBar />
-      </header>
       <main
         ref={mainRef}
-        className="main-container h-19/20 overflow-hidden w-full border-red-600 border"
+        className="main-container h-screen overflow-hidden w-full border-red-600 border"
       >
         <Icon
-          image="cv.png"
-          name="mon_cv.png"
-          style={"w-10"}
-          size="10"
+          image="site1.png"
+          name="cooking_api.web"
+          style="w-20"
           mainRef={mainRef}
+          link="https://cuisine-un-max.vercel.app"
+          initialTop={100}
+          initialLeft={200}
         />
         <Icon
-          image="cv.png"
-          name="mon_cv.png"
-          style={"w-10"}
-          size="10"
+          image="luffy.gif"
+          style="w-40"
           mainRef={mainRef}
+          initialTop={500}
+          initialLeft={50}
+          onSelect={handleImageSelect}
         />
-        <Icon image="luffy.gif" style={"w-40"} size="40" mainRef={mainRef} />
+        <Icon
+          image="yt.png"
+          style="w-20"
+          mainRef={mainRef}
+          initialTop={200}
+          initialLeft={400}
+          onSelect={handleImageSelect}
+        />
       </main>
+      {selectedImageIndex !== null && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={handleModalClose}>
+          <img src={imageList[selectedImageIndex]} alt="Selected" className="w-1/2 h-auto" />
+        </div>
+      )}
     </div>
   );
 }
