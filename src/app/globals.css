@@ -18,9 +18,8 @@ body {
 }
 
 .main-container {
-  background-image: url("../../public/planet.gif");
+  background-image: url("../../public/bg.png");
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
-  height: 100vh;
 }
