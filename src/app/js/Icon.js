@@ -34,9 +34,9 @@ const Icon = ({
   };
 
   return (
-    <Draggable bounds="parent" axis="both">
+    <Draggable bounds="body" axis="both">
       <div
-        className="icon cursor-move absolute flex flex-col items-center select-none"
+        className="icon cursor-move absolute flex flex-col items-center select-none hover:opacity-80"
         style={{ top: `${top}px`, left: `${left}px` }}
       >
         <img

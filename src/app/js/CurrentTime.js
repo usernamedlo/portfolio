@@ -1,49 +1,33 @@
 import { useState, useEffect } from "react";
 
 export default function CurrentTime() {
-  const [date, setDate] = useState(new Date());
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nove",
-    "Dec",
-  ];
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
+    setDate(new Date());
+
     const interval = setInterval(() => {
       setDate(new Date());
     }, 1000);
+
     return () => clearInterval(interval);
   }, []);
 
-  const dayName = days[date.getDay()];
-  const dayNumber = date.getDate();
-  const monthName = months[date.getMonth()];
-  const hours = date.getHours() % 12 || 12;
-  const minutes = date.getMinutes();
-  const ampm = date.getHours() >= 12 ? "PM" : "AM";
+  if (!date) {
+    return null; // Vous pouvez également renvoyer un squelette de chargement ici si vous le souhaitez.
+  }
+
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const seconds = date.getSeconds().toString().padStart(2, "0");
 
   return (
-    <span>
-      <div>
-        <div className="inline-block m-[0.2rem]">{dayName}</div>
-        <div className="inline-block m-[0.2rem]">{dayNumber}</div>
-        <div className="inline-block m-[0.2rem]">{monthName}</div>
-        <div className="inline-block w-9">
-          {hours}:{minutes < 10 ? "0" : ""}
-          {minutes}
-        </div>
-        <div className="inline-block w-6">{ampm}</div>
-      </div>
-    </span>
+    <div className="flex items-center text-white min-w-[5.5rem] text-xl">
+      <span>{hours}</span>
+      <span>:</span>
+      <span>{minutes}</span>
+      <span>:</span>
+      <span>{seconds}</span>
+    </div>
   );
 }
