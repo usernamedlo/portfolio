@@ -17,6 +17,8 @@ const Icon = ({
 
   const handleMouseDown = (e) => {
     e.preventDefault();
+    // Vérification pour les événements de toucher
+    const event = e.type === "touchstart" ? e.touches[0] : e;
     setMouseDownTime(performance.now());
   };
 
@@ -44,12 +46,16 @@ const Icon = ({
           className={`${style}`}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
+          onTouchStart={handleMouseDown} // Ajout de l'événement touch
+          onTouchEnd={handleMouseUp} // Ajout de l'événement touch
         />
         <p
           style={{ textShadow: "1px 2px 4px rgba(0, 0, 0, 0.5)" }}
           className={`mt-1 ${textSize}`}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
+          onTouchStart={handleMouseDown} // Ajout de l'événement touch
+          onTouchEnd={handleMouseUp} // Ajout de l'événement touch
         >
           {name}
         </p>

@@ -39,11 +39,11 @@ export default function Home() {
 
   // Images
   const imageList = [
+    "about_me.png",
     "basic_logo.png",
     "poster_1.png",
     "poster_2.png",
     nftImageUrl,
-    "about_me.png",
     "murakami.png",
   ];
 
