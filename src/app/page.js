@@ -206,7 +206,7 @@ export default function Home() {
           <img
             src={imageList[selectedImageIndex]}
             alt="Selected"
-            className="w-1/2 h-auto"
+            className="w-3/4 h-auto"
           />
         </div>
       )}
