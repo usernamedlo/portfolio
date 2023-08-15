@@ -123,7 +123,7 @@ export default function Home() {
     {
       image: "murakami.png",
       name: "murakami.png",
-      style: "w-20",
+      style: "w-28",
       initialTop: 710,
       initialLeft: 1250,
     },

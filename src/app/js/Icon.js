@@ -16,17 +16,16 @@ const Icon = ({
 
   const handleMouseDown = (e) => {
     e.preventDefault();
-    setMouseDownTime(new Date().getTime());
+    setMouseDownTime(performance.now());
   };
 
   const handleMouseUp = (e) => {
     e.preventDefault();
-    const mouseUpTime = new Date().getTime();
-    const elapsedTime = mouseUpTime - mouseDownTime;
+    const elapsedTime = performance.now() - mouseDownTime;
     if (elapsedTime <= 200) {
       if (link) {
         window.open(link, "_blank");
-      } else if (!link && onSelect) {
+      } else if (onSelect) {
         onSelect(image);
       }
     }
@@ -47,7 +46,7 @@ const Icon = ({
           onMouseUp={handleMouseUp}
         />
         <p
-          style={{ textShadow: "1px 2px 4px rgba(0, 0, 0, 0.5)" }} // Ceci applique une ombre noire
+          style={{ textShadow: "1px 2px 4px rgba(0, 0, 0, 0.5)" }}
           className="mt-1 text-lg"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}

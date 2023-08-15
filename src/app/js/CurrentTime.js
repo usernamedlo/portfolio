@@ -14,7 +14,7 @@ export default function CurrentTime() {
   }, []);
 
   if (!date) {
-    return null; // Vous pouvez également renvoyer un squelette de chargement ici si vous le souhaitez.
+    return null;
   }
 
   const hours = date.getHours().toString().padStart(2, "0");
@@ -22,7 +22,7 @@ export default function CurrentTime() {
   const seconds = date.getSeconds().toString().padStart(2, "0");
 
   return (
-    <div className="flex items-center text-white min-w-[5.5rem] text-xl">
+    <div className="text-white min-w-[5.5rem] text-xl">
       <span>{hours}</span>
       <span>:</span>
       <span>{minutes}</span>
