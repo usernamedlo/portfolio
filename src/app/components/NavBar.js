@@ -26,17 +26,14 @@ const NavBar = () => {
 
   return (
     <nav className="bg-[#333333] h-12 w-full flex items-center justify-between px-4 flex-row">
-      <a
-        href=""
-        rel="noopener noreferrer"
-      >
+      <a href="" rel="noopener noreferrer">
         <div className="flex items-center">
           <img
             src="../../apple_logo.png"
             alt="Apple Logo"
             className="h-7 mr-4"
           />
-          <strong className="text-white text-xl">
+          <strong className="text-white text-xl sm:text-center sm:w-full">
             <h3>usernamedlo</h3>
           </strong>
         </div>
