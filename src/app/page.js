@@ -181,8 +181,8 @@ export default function Home() {
             onSelect={handleImageSelect}
           />
           <Icon
-            image="Daft_Funk.png"
-            name="Daft_Funk.yt"
+            image="daft_funk.png"
+            name="daft_funk.yt"
             initialTop="top-[15%]"
             initialLeft="left-[65%]"
             link={"https://www.youtube.com/watch?v=AUh9xVoyqvk"}
