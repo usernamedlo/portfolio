@@ -39,8 +39,8 @@ export default function Home() {
 
   // Images
   const imageList = [
-    "about_me.png",
     "basic_logo.png",
+    "about_me.png",
     "poster_1.png",
     "poster_2.png",
     nftImageUrl,
@@ -131,15 +131,15 @@ export default function Home() {
         <Icon
           image="basic_logo.png"
           name="basic_logo.png"
-          initialTop="top-[90%]"
-          initialLeft="left-[35%]"
+          initialTop="top-[78%]"
+          initialLeft="left-[38%]"
           onSelect={handleImageSelect}
         />
         <Icon
           image="mail.png"
           name="contact_me.mailto"
-          initialTop="top-[72%] md:top-[60%]"
-          initialLeft="left-[35%] md:left-[40%]"
+          initialTop="top-[45%] md:top-[60%]"
+          initialLeft="left-[20%] md:left-[40%]"
           link={"mailto:loic.ghijselings@usernamedlo.com"}
         />
         <Icon
@@ -152,8 +152,8 @@ export default function Home() {
         <Icon
           image="site_2.png"
           name="paycheck.web"
-          initialTop="top-[80%]"
-          initialLeft="left-[70%]"
+          initialTop="top-[65%]"
+          initialLeft="left-[65%]"
           link={"https://paycheck-0xdlo.vercel.app"}
         />
         <span className="hidden lg:flex">
@@ -169,7 +169,7 @@ export default function Home() {
           <Icon
             image="poster_2.png"
             name="INSULAR.png"
-            initialTop="top-[80%]"
+            initialTop="top-[43%]"
             initialLeft="left-[10%]"
             onSelect={handleImageSelect}
           />
@@ -179,6 +179,13 @@ export default function Home() {
             initialTop="top-[50%]"
             initialLeft="left-[80%]"
             onSelect={handleImageSelect}
+          />
+          <Icon
+            image="Daft_Funk.png"
+            name="Daft_Funk.yt"
+            initialTop="top-[15%]"
+            initialLeft="left-[65%]"
+            link={"https://www.youtube.com/watch?v=AUh9xVoyqvk"}
           />
         </span>
         <span className="lg:hidden">
@@ -193,7 +200,7 @@ export default function Home() {
             image="github.png"
             name="usernamedlo.git"
             initialTop="top-[23%] md:top-[40%]"
-            initialLeft="left-[70%] md:left-[80%]"
+            initialLeft="left-[70%] md:left-[75%]"
             link={"https://github.com/usernamedlo"}
           />
         </span>
@@ -206,7 +213,7 @@ export default function Home() {
           <img
             src={imageList[selectedImageIndex]}
             alt="Selected"
-            className="w-3/4 h-auto"
+            className="w-3/4 md:w-1/2 h-auto"
           />
         </div>
       )}

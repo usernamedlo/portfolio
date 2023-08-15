@@ -26,7 +26,7 @@ const NavBar = () => {
 
   return (
     <nav className="bg-[#333333] h-12 w-full flex items-center justify-between px-4 flex-row lg:justify-between">
-      <a
+      <div
         href=""
         rel="noopener noreferrer"
         className="flex-grow flex justify-center lg:justify-start"
@@ -41,7 +41,7 @@ const NavBar = () => {
             <h3>usernamedlo</h3>
           </strong>
         </div>
-      </a>
+      </div>
       <div className="items-center text-lg hidden lg:flex">
         <div className="space-x-3 mr-5 mt-1">
           {socialLinks.map((social, index) => (
