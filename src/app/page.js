@@ -7,10 +7,11 @@ import axios from "axios";
 export default function Home() {
   const mainRef = useRef();
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-
-  // NFT
-  const [nftImageUrl, setNftImageUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  // NFT + API
+  const [nftImageUrl, setNftImageUrl] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -29,8 +30,6 @@ export default function Home() {
         "Erreur lors de la récupération de l'image_url du NFT:",
         err
       );
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -38,7 +37,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  //
+  // Images
   const imageList = [
     "basic_logo.png",
     "poster_1.png",
@@ -47,7 +46,8 @@ export default function Home() {
     "about_me.png",
     "murakami.png",
   ];
-  //
+
+  // Event handlers
   const handleImageSelect = (image) => {
     const index = imageList.indexOf(image);
     setSelectedImageIndex(index);
@@ -69,12 +69,43 @@ export default function Home() {
     }
   };
 
+  // Keyboard
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [selectedImageIndex]);
+
+  // Loading
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          setIsLoading(false);
+          clearInterval(timer);
+          return 100;
+        }
+        const newProgress = oldProgress + 20;
+        return newProgress > 100 ? 100 : newProgress;
+      });
+    }, 200);
+    return () => clearInterval(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center flex-col">
+        <img src="../../apple_logo.png" alt="Apple Logo" className="h-40" />
+        <div className="w-3/4 bg-gray-500 mt-6 rounded">
+          <div
+            style={{ width: `${progress}%` }}
+            className="h-2 bg-white transition-all duration-200 rounded"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-screen">
@@ -156,15 +187,15 @@ export default function Home() {
           link={"https://paycheck-lfnsgxbr6-0xdlo.vercel.app"}
           style="w-20"
           name="paycheck.web"
-          initialTop={200}
-          initialLeft={1000}
+          initialTop={75}
+          initialLeft={1100}
         />
         <Icon
           image="murakami.png"
           style={"w-20"}
           name="murakami.png"
           initialTop={400}
-          initialLeft={1000}
+          initialLeft={1330}
           onSelect={handleImageSelect}
         />
         <Icon
@@ -172,8 +203,8 @@ export default function Home() {
           style={"w-20"}
           name="daft_funk.yt"
           link={"https://www.youtube.com/watch?v=AUh9xVoyqvk"}
-          initialTop={400}
-          initialLeft={700}
+          initialTop={600}
+          initialLeft={250}
         />
       </main>
       {selectedImageIndex !== null && (
