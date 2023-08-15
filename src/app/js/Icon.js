@@ -38,7 +38,7 @@ const Icon = ({
   return (
     <Draggable bounds="body" axis="both">
       <div
-        className={`icon cursor-move absolute flex flex-col items-center select-none transition-opacity duration-200 hover:opacity-80 ${topClass} ${leftClass}`}
+        className={`icon cursor-move absolute flex flex-col items-center select-none transition-opacity duration-200 hover:opacity-80 z-0 ${topClass} ${leftClass}`}
       >
         <img
           src={image}

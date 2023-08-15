@@ -25,7 +25,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="bg-[#333333] h-12 w-full flex items-center justify-between px-4 flex-row lg:justify-between">
+    <nav className="bg-[#333333] h-12 w-full flex items-center justify-between px-4 flex-row lg:justify-between z-40 absolute">
       <div
         href=""
         rel="noopener noreferrer"
