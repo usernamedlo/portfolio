@@ -118,94 +118,85 @@ export default function Home() {
       >
         <Icon
           image="about_me.png"
-          name="README_FIRST.md"
-          style="w-28"
-          initialTop={70}
-          initialLeft={25}
+          name="README_FIRST.txt"
           onSelect={handleImageSelect}
-        />
-        <Icon
-          image="basic_logo.png"
-          name="BASIC_LOGO.png"
-          style="w-40"
-          initialTop={300}
-          initialLeft={150}
-          onSelect={handleImageSelect}
-        />
-        <Icon
-          image="site_1.png"
-          name="cooking_api.web"
-          style="w-20"
-          link="https://cuisine-un-max.vercel.app"
-          initialTop={200}
-          initialLeft={1300}
         />
         <Icon
           image="poster_1.png"
           name="VIRTUAL_LOVE.png"
-          style="w-24"
-          initialTop={300}
-          initialLeft={1500}
+          initialTop="top-[20%]"
+          initialLeft="left-[15%]"
           onSelect={handleImageSelect}
         />
         <Icon
-          image="poster_2.png"
-          name="INSULAR.png"
-          style="w-28"
-          initialTop={200}
-          initialLeft={400}
+          image="basic_logo.png"
+          name="basic_logo.png"
+          initialTop="top-[90%]"
+          initialLeft="left-[35%]"
           onSelect={handleImageSelect}
         />
         <Icon
           image="mail.png"
-          name="contact_me.png"
-          style="w-20"
-          initialTop={600}
-          initialLeft={400}
+          name="contact_me.mailto"
+          initialTop="top-[72%] md:top-[60%]"
+          initialLeft="left-[35%] md:left-[40%]"
           link={"mailto:loic.ghijselings@usernamedlo.com"}
         />
         <Icon
-          image={nftImageUrl}
-          link={
-            "https://opensea.io/assets/ethereum/0xddbddcfdec729ee7013c3038482538c03d7c62cb/2500"
-          }
-          style="w-40"
-          name="Pixel_Interfaces_#2500.nft"
-          initialTop={650}
-          initialLeft={1550}
-        />
-        <Icon
-          image="random.png"
-          link={"https://theuselessweb.com"}
-          style="w-20"
-          name="?"
-          initialTop={600}
-          initialLeft={1400}
+          image="site_1.png"
+          name="cooking_api.web"
+          initialTop="top-[75%]"
+          initialLeft="left-[5%]"
+          link={"https://cuisine-un-max.vercel.app"}
         />
         <Icon
           image="site_2.png"
-          link={"https://paycheck-lfnsgxbr6-0xdlo.vercel.app"}
-          style="w-20"
           name="paycheck.web"
-          initialTop={75}
-          initialLeft={1100}
+          initialTop="top-[80%]"
+          initialLeft="left-[70%]"
+          link={"https://paycheck-0xdlo.vercel.app"}
         />
+        <span className="hidden lg:flex">
+          <Icon
+            image={nftImageUrl}
+            name="Pixel_Interfaces_#2500.nft"
+            initialTop="top-[20%]"
+            initialLeft="left-[75%]"
+            link={
+              "https://opensea.io/assets/0xdDbDDcfdec729eE7013C3038482538C03D7C62Cb/2500"
+            }
+          />
+          <Icon
+            image="poster_2.png"
+            name="INSULAR.png"
+            initialTop="top-[80%]"
+            initialLeft="left-[10%]"
+            onSelect={handleImageSelect}
+          />
+          <Icon
+            image="murakami.png"
+            name="murakami.png"
+            initialTop="top-[50%]"
+            initialLeft="left-[80%]"
+            onSelect={handleImageSelect}
+          />
+        </span>
+        <span className="lg:hidden">
         <Icon
-          image="murakami.png"
-          style={"w-20"}
-          name="murakami.png"
-          initialTop={400}
-          initialLeft={1330}
-          onSelect={handleImageSelect}
-        />
-        <Icon
-          image="daft_funk.png"
-          style={"w-20"}
-          name="daft_funk.yt"
-          link={"https://www.youtube.com/watch?v=AUh9xVoyqvk"}
-          initialTop={600}
-          initialLeft={250}
-        />
+            image="linkedin.png"
+            name="loïc_ghijselings.lkdn"
+            initialTop="top-[7.25%]"
+            initialLeft="left-[60%]"
+            link={"https://www.linkedin.com/in/loic-ghijselings/"}
+          />
+          <Icon
+            image="github.png"
+            name="usernamedlo.git"
+            initialTop="top-[23%] md:top-[40%]"
+            initialLeft="left-[70%] md:left-[80%]"
+            link={"https://github.com/usernamedlo"}
+          />
+        </span>
       </main>
       {selectedImageIndex !== null && (
         <div

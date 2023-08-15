@@ -25,20 +25,24 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="bg-[#333333] h-12 w-full flex items-center justify-between px-4 flex-row">
-      <a href="" rel="noopener noreferrer">
+    <nav className="bg-[#333333] h-12 w-full flex items-center justify-between px-4 flex-row lg:justify-between">
+      <a
+        href=""
+        rel="noopener noreferrer"
+        className="flex-grow flex justify-center lg:justify-start"
+      >
         <div className="flex items-center">
           <img
             src="../../apple_logo.png"
             alt="Apple Logo"
             className="h-7 mr-4"
           />
-          <strong className="text-white text-xl sm:text-center sm:w-full">
+          <strong className="text-white text-xl">
             <h3>usernamedlo</h3>
           </strong>
         </div>
       </a>
-      <div className="flex items-center text-lg">
+      <div className="items-center text-lg hidden lg:flex">
         <div className="space-x-3 mr-5 mt-1">
           {socialLinks.map((social, index) => (
             <a

@@ -4,14 +4,15 @@ import Draggable from "react-draggable";
 const Icon = ({
   image,
   name,
-  style,
+  style = "w-20 md:w-24 lg:w-32",
   link,
-  initialTop,
-  initialLeft,
+  initialTop = "top-[6.25%]", // Utilise des classes Tailwind
+  initialLeft = "left-[3%]", // Utilise des classes Tailwind
+  textSize = "text-sm md:text-xl lg:text-xl",
   onSelect,
 }) => {
-  const [top, setTop] = useState(initialTop);
-  const [left, setLeft] = useState(initialLeft);
+  const [topClass, setTopClass] = useState(initialTop);
+  const [leftClass, setLeftClass] = useState(initialLeft);
   const [mouseDownTime, setMouseDownTime] = useState(null);
 
   const handleMouseDown = (e) => {
@@ -35,8 +36,7 @@ const Icon = ({
   return (
     <Draggable bounds="body" axis="both">
       <div
-        className="icon cursor-move absolute flex flex-col items-center select-none transition-opacity duration-200 hover:opacity-80"
-        style={{ top: `${top}px`, left: `${left}px` }}
+        className={`icon cursor-move absolute flex flex-col items-center select-none transition-opacity duration-200 hover:opacity-80 ${topClass} ${leftClass}`}
       >
         <img
           src={image}
@@ -47,7 +47,7 @@ const Icon = ({
         />
         <p
           style={{ textShadow: "1px 2px 4px rgba(0, 0, 0, 0.5)" }}
-          className="mt-1 text-lg"
+          className={`mt-1 ${textSize}`}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
         >
