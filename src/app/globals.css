@@ -12,15 +12,26 @@
 
 body {
   font-family: "SF Pro Display", sans-serif;
-  background: black;
+  background: #0F0E17;
   color: #d1d5de;
   margin: 0;
 }
 
 .main-container {
-  background-image: url("../../public/planet.gif");
+  background-image: url("../../public/planet.png");
   background-position: center center;
-  background-size: contain;
+  background-size: 650px;
   background-repeat: no-repeat;
 }
 
+@media (max-width: 1024px) {
+  .main-container {
+    background-size: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    background-size: 300px;
+  }
+}

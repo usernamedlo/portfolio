@@ -8,7 +8,7 @@ const Icon = ({
   link,
   initialTop,
   initialLeft,
-  onSelect
+  onSelect,
 }) => {
   const [top, setTop] = useState(initialTop);
   const [left, setLeft] = useState(initialLeft);
@@ -36,7 +36,7 @@ const Icon = ({
   return (
     <Draggable bounds="body" axis="both">
       <div
-        className="icon cursor-move absolute flex flex-col items-center select-none hover:opacity-80"
+        className="icon cursor-move absolute flex flex-col items-center select-none transition-opacity duration-200 hover:opacity-80"
         style={{ top: `${top}px`, left: `${left}px` }}
       >
         <img
@@ -47,7 +47,8 @@ const Icon = ({
           onMouseUp={handleMouseUp}
         />
         <p
-          className="mt-2"
+          style={{ textShadow: "1px 2px 4px rgba(0, 0, 0, 0.5)" }} // Ceci applique une ombre noire
+          className="mt-1 text-lg"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
         >
