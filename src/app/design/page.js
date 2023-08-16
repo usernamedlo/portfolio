@@ -1,5 +1,4 @@
-import React from "react";
-
+"use client"
 const design = () => {
   return (
     <div className={`flex flex-col h-screen`}>
