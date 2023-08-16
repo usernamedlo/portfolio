@@ -1,13 +1,12 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import NavBar from "../components/NavBar";
 
 const design = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const mainRef = useRef();
 
   return (
-    <div className={`flex flex-col h-screen ${!isLoading ? "fade-in" : ""}`}>
+    <div className={`flex flex-col h-screen`}>
       <header>
         <NavBar />
       </header>
