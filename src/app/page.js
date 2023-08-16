@@ -141,11 +141,6 @@ export default function Home() {
     <div className={`flex flex-col h-screen ${!isLoading ? "fade-in" : ""}`}>
       <header>
         <NavBar />
-        <Link href='/FolderPage'>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-center cursor-pointer">
-            Loïc Ghijselings
-          </h1>
-        </Link>
       </header>
       <main
         ref={mainRef}
@@ -156,13 +151,6 @@ export default function Home() {
           name="README_FIRST.txt"
           onSelect={handleImageSelect}
           onLoad={handleImageLoaded}
-        />
-        <Icon
-          image="move_me.png"
-          name="MOVE_ME.png"
-          style="w-16 md:w-20 lg:w-24"
-          initialTop="top-1/2"
-          initialLeft="left-1/2"
         />
         <Icon
           image="poster_1.png"
@@ -183,7 +171,7 @@ export default function Home() {
           name="contact_me.mailto"
           initialTop="top-[45%] md:top-[60%]"
           initialLeft="left-[20%] md:left-[40%]"
-          link={"mailto:loic.ghijselings@usernamedlo.com?subject="}
+          link={"mailto:loic.ghijselings@usernamedlo.com?subject=Mail du portfolio"}
         />
         <Icon
           image="site_1.png"
@@ -199,6 +187,21 @@ export default function Home() {
           initialLeft="left-[65%]"
           link={"https://paycheck-0xdlo.vercel.app"}
         />
+        <Icon
+          image="pdf.png"
+          name="cv.pdf"
+          initialTop="top-[80%]"
+          initialLeft="left-[80%]"
+          link={"/cv.pdf"}
+        />
+        <Link href="/design">
+          <Icon
+            image="folder.png"
+            name="WIP_PROJECT"
+            initialTop="top-[60%]"
+            initialLeft="left-[5%]"
+          />
+        </Link>
         <span className="hidden lg:flex">
           {nftImageUrl && (
             <Icon
@@ -250,14 +253,6 @@ export default function Home() {
             link={"https://github.com/usernamedlo"}
           />
         </span>
-        <Link href="/pages">
-          <Icon
-            image="folder.png"
-            name="test_folder"
-            initialTop="top-[50%]"
-            initialLeft="left-[50%]"
-          />
-        </Link>
       </main>
 
       {selectedImageIndex !== null && (
