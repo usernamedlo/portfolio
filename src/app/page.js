@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Icon from "./js/Icon";
 import NavBar from "./components/NavBar";
 import axios from "axios";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Home() {
   const mainRef = useRef();
@@ -189,7 +190,7 @@ export default function Home() {
           />
         </span>
         <span className="lg:hidden">
-        <Icon
+          <Icon
             image="linkedin.png"
             name="loïc_ghijselings.lkdn"
             initialTop="top-[7.25%]"
@@ -217,6 +218,7 @@ export default function Home() {
           />
         </div>
       )}
+      <Analytics />
     </div>
   );
 }
