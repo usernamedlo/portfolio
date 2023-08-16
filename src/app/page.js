@@ -109,7 +109,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className={`flex flex-col h-screen ${!isLoading ? "fade-in" : ""}`}>
       <header>
         <NavBar />
       </header>
@@ -206,6 +206,7 @@ export default function Home() {
           />
         </span>
       </main>
+
       {selectedImageIndex !== null && (
         <div
           className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50"

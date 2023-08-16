@@ -6,8 +6,8 @@ const Icon = ({
   name,
   style = "w-20 md:w-24 lg:w-32",
   link,
-  initialTop = "top-[6.25%]", // Utilise des classes Tailwind
-  initialLeft = "left-[3%]", // Utilise des classes Tailwind
+  initialTop = "top-[6.25%]",
+  initialLeft = "left-[3%]",
   textSize = "text-sm md:text-xl lg:text-xl",
   onSelect,
 }) => {
@@ -17,7 +17,6 @@ const Icon = ({
 
   const handleMouseDown = (e) => {
     e.preventDefault();
-    // Vérification pour les événements de toucher
     const event = e.type === "touchstart" ? e.touches[0] : e;
     setMouseDownTime(performance.now());
   };
@@ -46,16 +45,16 @@ const Icon = ({
           className={`${style}`}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
-          onTouchStart={handleMouseDown} // Ajout de l'événement touch
-          onTouchEnd={handleMouseUp} // Ajout de l'événement touch
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
         />
         <p
           style={{ textShadow: "1px 2px 4px rgba(0, 0, 0, 0.5)" }}
           className={`mt-1 ${textSize}`}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
-          onTouchStart={handleMouseDown} // Ajout de l'événement touch
-          onTouchEnd={handleMouseUp} // Ajout de l'événement touch
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
         >
           {name}
         </p>
