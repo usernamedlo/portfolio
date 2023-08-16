@@ -1,15 +1,25 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import Icon from "./js/Icon";
+import Icon from "./components/Icon";
 import NavBar from "./components/NavBar";
 import axios from "axios";
 import { Analytics } from "@vercel/analytics/react";
+import Link from "next/link";
 
 export default function Home() {
+  const selectedImageRef = useRef(null);
+
   const mainRef = useRef();
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+
+  // Images
+  const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+
+  const handleImageLoaded = () => {
+    setLoadedImagesCount((prevCount) => prevCount + 1);
+  };
 
   // NFT + API
   const [nftImageUrl, setNftImageUrl] = useState(null);
@@ -38,10 +48,16 @@ export default function Home() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (nftImageUrl) {
+      setSelectedImageIndex(0);
+    }
+  }, [nftImageUrl]);
+
   // Images
   const imageList = [
-    "basic_logo.png",
     "about_me.png",
+    "basic_logo.png",
     "poster_1.png",
     "poster_2.png",
     nftImageUrl,
@@ -78,11 +94,24 @@ export default function Home() {
     };
   }, [selectedImageIndex]);
 
+  useEffect(() => {
+    if (selectedImageRef.current) {
+      console.log("Selected Image Dimensions:", {
+        width: selectedImageRef.current.naturalWidth,
+        height: selectedImageRef.current.naturalHeight,
+      });
+    }
+  }, [selectedImageIndex]);
+
   // Loading
   useEffect(() => {
+    if (!nftImageUrl) return;
+
+    const totalImages = imageList.length;
+
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
-        if (oldProgress === 100) {
+        if (oldProgress >= 100 || loadedImagesCount === totalImages) {
           setIsLoading(false);
           clearInterval(timer);
           return 100;
@@ -92,7 +121,7 @@ export default function Home() {
       });
     }, 200);
     return () => clearInterval(timer);
-  }, []);
+  }, [loadedImagesCount, nftImageUrl]);
 
   if (isLoading) {
     return (
@@ -112,22 +141,28 @@ export default function Home() {
     <div className={`flex flex-col h-screen ${!isLoading ? "fade-in" : ""}`}>
       <header>
         <NavBar />
+        <Link href='/FolderPage'>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-center cursor-pointer">
+            Loïc Ghijselings
+          </h1>
+        </Link>
       </header>
       <main
         ref={mainRef}
         className="main-container h-screen overflow-hidden w-full"
       >
         <Icon
+          image="about_me.png"
+          name="README_FIRST.txt"
+          onSelect={handleImageSelect}
+          onLoad={handleImageLoaded}
+        />
+        <Icon
           image="move_me.png"
           name="MOVE_ME.png"
           style="w-16 md:w-20 lg:w-24"
           initialTop="top-1/2"
           initialLeft="left-1/2"
-        />
-        <Icon
-          image="about_me.png"
-          name="README_FIRST.txt"
-          onSelect={handleImageSelect}
         />
         <Icon
           image="poster_1.png"
@@ -165,15 +200,18 @@ export default function Home() {
           link={"https://paycheck-0xdlo.vercel.app"}
         />
         <span className="hidden lg:flex">
-          <Icon
-            image={nftImageUrl}
-            name="Pixel_Interfaces_#2500.nft"
-            initialTop="top-[20%]"
-            initialLeft="left-[75%]"
-            link={
-              "https://opensea.io/assets/0xdDbDDcfdec729eE7013C3038482538C03D7C62Cb/2500"
-            }
-          />
+          {nftImageUrl && (
+            <Icon
+              image={nftImageUrl}
+              name="Pixel_Interfaces_#2500.nft"
+              initialTop="top-[20%]"
+              initialLeft="left-[75%]"
+              link={
+                "https://opensea.io/assets/0xdDbDDcfdec729eE7013C3038482538C03D7C62Cb/2500"
+              }
+              onLoad={handleImageLoaded}
+            />
+          )}
           <Icon
             image="poster_2.png"
             name="INSULAR.png"
@@ -212,6 +250,14 @@ export default function Home() {
             link={"https://github.com/usernamedlo"}
           />
         </span>
+        <Link href="/pages">
+          <Icon
+            image="folder.png"
+            name="test_folder"
+            initialTop="top-[50%]"
+            initialLeft="left-[50%]"
+          />
+        </Link>
       </main>
 
       {selectedImageIndex !== null && (
@@ -220,9 +266,12 @@ export default function Home() {
           onClick={handleModalClose}
         >
           <img
+            ref={selectedImageRef}
             src={imageList[selectedImageIndex]}
             alt="Selected"
-            className="w-3/4 md:w-1/2 xl:w-1/4"
+            className={`${
+              selectedImageIndex === 0 ? "w-[90%]" : "w-[3/4]"
+            }  md:w-1/2 3xl:w-1/3`}
           />
         </div>
       )}
