@@ -118,6 +118,13 @@ export default function Home() {
         className="main-container h-screen overflow-hidden w-full"
       >
         <Icon
+          image="move_me.png"
+          name="MOVE_ME.png"
+          style="w-16 md:w-20 lg:w-24"
+          initialTop="top-1/2"
+          initialLeft="left-1/2"
+        />
+        <Icon
           image="about_me.png"
           name="README_FIRST.txt"
           onSelect={handleImageSelect}
@@ -141,7 +148,7 @@ export default function Home() {
           name="contact_me.mailto"
           initialTop="top-[45%] md:top-[60%]"
           initialLeft="left-[20%] md:left-[40%]"
-          link={"mailto:loic.ghijselings@usernamedlo.com"}
+          link={"mailto:loic.ghijselings@usernamedlo.com?subject="}
         />
         <Icon
           image="site_1.png"
@@ -215,7 +222,7 @@ export default function Home() {
           <img
             src={imageList[selectedImageIndex]}
             alt="Selected"
-            className="w-3/4 md:w-1/2 h-auto"
+            className="w-3/4 md:w-1/2 xl:w-1/4"
           />
         </div>
       )}
