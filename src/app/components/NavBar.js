@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import CurrentTime from "../js/CurrentTime";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
