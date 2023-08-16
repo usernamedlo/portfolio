@@ -189,10 +189,10 @@ export default function Home() {
         />
         <Icon
           image="pdf.png"
-          name="cv.pdf"
+          name="CV.pdf"
           initialTop="top-[80%]"
           initialLeft="left-[80%]"
-          link={"/cv.pdf"}
+          link={"/CV.pdf"}
         />
         <Link href="/design">
           <Icon
