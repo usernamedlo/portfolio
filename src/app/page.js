@@ -123,19 +123,19 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [loadedImagesCount, nftImageUrl]);
 
-  if (isLoading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center flex-col">
-        <img src="../../apple_logo.png" alt="Apple Logo" className="h-40" />
-        <div className="w-3/4 bg-gray-500 mt-6 rounded">
-          <div
-            style={{ width: `${progress}%` }}
-            className="h-2 bg-white transition-all duration-200 rounded"
-          />
-        </div>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="h-screen w-full flex items-center justify-center flex-col">
+  //       <img src="../../apple_logo.png" alt="Apple Logo" className="h-40" />
+  //       <div className="w-3/4 bg-gray-500 mt-6 rounded">
+  //         <div
+  //           style={{ width: `${progress}%` }}
+  //           className="h-2 bg-white transition-all duration-200 rounded"
+  //         />
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={`flex flex-col h-screen ${!isLoading ? "fade-in" : ""}`}>
